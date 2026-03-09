@@ -1,95 +1,640 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prabu Ganeshan | CV</title>
-    <meta
-      name="description"
-      content="Professional CV webpage for Prabu Ganeshan with experience, skills, education, and contact information."
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="hero">
-      <div class="container">
-        <p class="eyebrow">Curriculum Vitae</p>
-        <h1>Prabu Ganeshan</h1>
-        <p class="subtitle">Software Engineer</p>
-        <div class="cta-row">
-          <a class="btn primary" href="Prabu_Ganeshan_Resume%20(1).pdf" target="_blank" rel="noopener">Open PDF Resume</a>
-          <a class="btn secondary" href="mailto:your-email@example.com">Contact Me</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prabu Ganeshan — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1f3d;
+      --navy-mid: #1a3260;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #faf8f4;
+      --text: #2c2c2c;
+      --muted: #6b7280;
+      --border: #e2ddd6;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #243b6e 100%);
+      color: white;
+      padding: 64px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.08);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 20px; left: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.05);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .name-block h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .name-block .gold-line {
+      display: block;
+      width: 56px; height: 3px;
+      background: var(--gold);
+      margin: 14px 0 18px;
+      border-radius: 2px;
+      animation: expandLine 0.9s ease 0.3s both;
+    }
+
+    @keyframes expandLine {
+      from { width: 0; opacity: 0; }
+      to   { width: 56px; opacity: 1; }
+    }
+
+    .name-block .tagline {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .contact-item .icon {
+      width: 28px; height: 28px;
+      background: rgba(201,168,76,0.2);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    /* Nav tabs */
+    .header-nav {
+      display: flex;
+      gap: 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      animation: fadeUp 0.7s ease 0.5s both;
+    }
+
+    .header-nav a {
+      display: block;
+      padding: 14px 24px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .header-nav a:hover,
+    .header-nav a.active {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ── LAYOUT ── */
+    .main-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 52px; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .section-label h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: -0.2px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    .section-label .s-icon {
+      width: 32px; height: 32px;
+      background: var(--navy);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 0.975rem;
+      color: #444;
+      line-height: 1.85;
+      padding: 24px 28px;
+      background: white;
+      border-left: 3px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    /* ── EXPERIENCE ── */
+    .job {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .job:hover {
+      box-shadow: 0 6px 28px rgba(15,31,61,0.1);
+      transform: translateY(-2px);
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .job-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .job-period {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--navy);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      letter-spacing: 0.04em;
+    }
+
+    .job-company {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .job ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .job ul li {
+      font-size: 0.88rem;
+      color: #4a4a4a;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .job ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 9px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .current-badge {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+
+    /* ── ACCOMPLISHMENTS ── */
+    .accomplishments-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .acc-card {
+      background: white;
+      border-radius: 10px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .acc-star {
+      color: var(--gold);
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .acc-card p {
+      font-size: 0.875rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { position: sticky; top: 32px; }
+
+    .sidebar-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .sidebar-card h3 span {
+      color: var(--gold);
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      color: var(--navy);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 6px;
+      margin: 0 5px 7px 0;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .skill-tag:hover {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .skill-tag.highlight {
+      background: var(--navy);
+      color: var(--gold-light);
+      border-color: var(--navy);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .job:nth-child(1) { animation-delay: 0.1s; }
+    .job:nth-child(2) { animation-delay: 0.2s; }
+    .job:nth-child(3) { animation-delay: 0.3s; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 28px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .main-grid { grid-template-columns: 1fr; padding: 32px 20px; }
+      .header-inner { padding: 0 20px; }
+      .header-top { flex-direction: column; align-items: flex-start; }
+      .contact-block { align-items: flex-start; }
+      .accomplishments-grid { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="name-block">
+        <h1>John Doe</h1>
+        <span class="gold-line"></span>
+        <p class="tagline">IT Operations &amp; Application Support Leader · Team Builder · ITIL Practitioner</p>
+      </div>
+      <div class="contact-block">
+        <div class="contact-item">
+          <span class="icon">📞</span>
+          &lt;9962433898&gt;
+        </div>
+        <div class="contact-item">
+          <span class="icon">✉️</span>
+          &lt;<a href="vgprabu17@gmail.com" class="__cf_email__" data-cfemail="8efdefe3fee2ebceebe3efe7e2a0ede1e3">[email&#160;protected]</a>&gt;
         </div>
       </div>
-    </header>
+    </div>
+    <nav class="header-nav">
+      <a href="#summary" class="active">Summary</a>
+      <a href="#experience">Experience</a>
+      <a href="#accomplishments">Accomplishments</a>
+      <a href="#skills">Skills</a>
+    </nav>
+  </div>
+</header>
 
-    <main class="container">
-      <section>
-        <h2>Profile</h2>
-        <p>
-          Results-driven software engineer with experience building reliable backend services,
-          user-friendly web interfaces, and scalable systems. Passionate about solving
-          real-world problems with clean architecture and maintainable code.
-        </p>
-      </section>
+<!-- ══ MAIN ══ -->
+<div class="main-grid">
 
-      <section>
-        <h2>Skills</h2>
-        <ul class="tags">
-          <li>JavaScript / TypeScript</li>
-          <li>Python</li>
-          <li>Node.js</li>
-          <li>React</li>
-          <li>REST APIs</li>
-          <li>SQL</li>
-          <li>Git / GitHub</li>
-          <li>Cloud Deployment</li>
+  <!-- LEFT COLUMN -->
+  <main>
+
+    <!-- Summary -->
+    <section id="summary">
+      <div class="section-label">
+        <div class="s-icon">👤</div>
+        <h2>Professional Summary</h2>
+      </div>
+      <p class="summary-text">
+        Versatile IT professional with deep expertise in day-to-day operations, application support, and back-office user assistance. Proven track record in team leadership — successfully establishing and managing a team of analysts for 24x7 production support. Recognised for implementing streamlined processes, collaborating on technology integration, and optimising team functions for enhanced efficiency, service quality, and cost savings.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="section-label">
+        <div class="s-icon">💼</div>
+        <h2>Work History</h2>
+      </div>
+
+      <!-- Job 1 -->
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">&lt;Technology Support Manager&gt; <span class="current-badge">Current</span></div>
+          <div class="job-period">📅 Jun 2021 — Present</div>
+        </div>
+        <div class="job-company">&lt;Stats Perform,Bangalore&gt;</div>
+        <ul>
+          <li>Proficient in IT infrastructure technologies including networking, AWS, monitoring tools, Linux/Windows hosts, and foundational knowledge of Docker, Kubernetes, and web application architecture.</li>
+          <li>Continuously explore and adopt emerging technologies to optimise operations, reduce manual effort, and improve team efficiency.</li>
+          <li>Managed day-to-day operations of application support and provided comprehensive back-office user assistance.</li>
+          <li>Conducted audits on incidents, requests, changes, and problems in alignment with ITIL standards, ensuring compliance and efficiency.</li>
+          <li>Spearheaded formation of a new team of eight analysts, overseeing recruitment, onboarding, training, and deployment for production support.</li>
+          <li>Implemented 24x7 production support, managing back-office user support and promptly resolving technical issues encountered by clients.</li>
+          <li>Introduced streamlined processes that significantly contributed to achieving a high success ratio and enhancing operational efficiency.</li>
+          <li>Led initiatives to improve incident management quality through playbooks and automated routine activities such as request fulfilment and follow-ups.</li>
+          <li>Introduced innovative solutions like self-healing systems and AI agents to assist analysts in efficient incident triage and resolution.</li>
+          <li>Collaborated with diverse business stakeholders to integrate new technologies, leading successful service transitions and ongoing support.</li>
+          <li>Authored comprehensive documentation including runbooks and critical operational documents, facilitating smooth operations and knowledge transfer.</li>
         </ul>
-      </section>
+      </div>
 
-      <section>
-        <h2>Experience</h2>
-        <article>
-          <h3>Senior Software Engineer</h3>
-          <p class="meta">Company Name • 2022 – Present</p>
-          <ul>
-            <li>Designed and delivered production-grade web applications serving thousands of users.</li>
-            <li>Improved API response times by optimizing database access and caching layers.</li>
-            <li>Mentored junior developers and set coding standards for team quality.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Software Engineer</h3>
-          <p class="meta">Company Name • 2019 – 2022</p>
-          <ul>
-            <li>Built reusable frontend components and integrated them with backend services.</li>
-            <li>Implemented CI/CD checks and reduced deployment issues with automated testing.</li>
-            <li>Collaborated with cross-functional teams to ship customer-focused features.</li>
-          </ul>
-        </article>
-      </section>
-
-      <section>
-        <h2>Education</h2>
-        <p><strong>Bachelor's Degree in Computer Science</strong> — University Name</p>
-      </section>
-
-      <section>
-        <h2>Links</h2>
-        <ul class="links">
-          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="Prabu_Ganeshan_Resume%20(1).pdf" target="_blank" rel="noopener">Download Resume PDF</a></li>
+      <!-- Job 2 -->
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">&lt;Specialist&gt;</div>
+          <div class="job-period">📅 Jun 2019 — Jun 2021</div>
+        </div>
+        <div class="job-company">&lt;HCL Technologies,Chennai&gt;</div>
+        <ul>
+          <li>Served as primary escalation point for desktops, laptops, VDIs, printers, and scanner-related issues.</li>
+          <li>Managed a collaborative team of 7 members addressing user-reported issues in Ireland, including shift rosters, transport arrangements, and monthly performance ratings.</li>
+          <li>Led key initiatives including file share migrations, Varonis tool upgrades, and migration of 3,500 client machines from Windows 7 to Windows 10.</li>
+          <li>Independently addressed critical P1 and P2 incidents, actively participating in internal and external calls and resolving issues from the desktop end.</li>
+          <li>Demonstrated strong leadership during KPMG audits, facilitated two client visits, and successfully initiated Business Continuity Planning (BCP) during COVID-19, ensuring seamless work-from-home operations.</li>
         </ul>
-      </section>
-    </main>
+      </div>
 
-    <footer>
-      <p>© <span id="year"></span> Prabu Ganeshan</p>
-    </footer>
+      <!-- Job 3 -->
+      <div class="job">
+        <div class="job-header">
+          <div class="job-title">&lt;Senior Systems Engineer&gt;</div>
+          <div class="job-period">📅 Apr 2015 — Jun 2019</div>
+        </div>
+        <div class="job-company">&lt;Cognizant Technological Solutions,Chennai&gt;</div>
+        <ul>
+          <li>Provided 24x7 first-level support to both onsite and offshore users, including installation of IBM and Oracle products.</li>
+          <li>Managed SCCM tasks such as client remediation, advertisement creation, collection creation, and server status checks.</li>
+          <li>Logged, diagnosed, and resolved end-user requests, maintaining effective communication and coordination with onsite and support teams.</li>
+          <li>Conducted remote desktop support for US customers, troubleshooting Windows XP/7, Lotus Notes, Cisco VPN, SCCM, McAfee EPO, and endpoint encryption.</li>
+          <li>Monitored ServiceNow workflows, performed root cause analysis, maintained ticket quality, and conducted Knowledge Transfer across global regions (US, LATAM, EMEA, APAC).</li>
+          <li>Handled asset inventory, network operation centre responsibilities, and initial triage of network-related issues.</li>
+        </ul>
+      </div>
+    </section>
 
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-  </body>
-</html>
+    <!-- Accomplishments -->
+    <section id="accomplishments">
+      <div class="section-label">
+        <div class="s-icon">🏆</div>
+        <h2>Accomplishments</h2>
+      </div>
+      <div class="accomplishments-grid">
+        <div class="acc-card">
+          <div class="acc-star">★</div>
+          <p>Demonstrated consistent excellence, achieving <strong>two promotions within two years</strong> at Stats Perform.</p>
+        </div>
+        <div class="acc-card">
+          <div class="acc-star">★</div>
+          <p>Acknowledged for <strong>outstanding performance</strong> recognition during a specific quarter.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="sidebar" id="skills">
+
+    <div class="sidebar-card">
+      <h3><span>⚡</span> Core Skills</h3>
+      <div>
+        <span class="skill-tag highlight">Application Support</span>
+        <span class="skill-tag highlight">Team Leadership</span>
+        <span class="skill-tag highlight">ITIL</span>
+        <span class="skill-tag">Remote Desktop Support</span>
+        <span class="skill-tag">Back-office Assistance</span>
+        <span class="skill-tag">Incident Management</span>
+        <span class="skill-tag">Change Management</span>
+        <span class="skill-tag">24x7 Operations</span>
+        <span class="skill-tag">Strategic Planning</span>
+        <span class="skill-tag">Recruitment</span>
+        <span class="skill-tag">Training</span>
+        <span class="skill-tag">Process Optimisation</span>
+        <span class="skill-tag">Knowledge Management</span>
+        <span class="skill-tag">Innovations</span>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <h3><span>🖥️</span> Technology</h3>
+      <div>
+        <span class="skill-tag highlight">AWS</span>
+        <span class="skill-tag highlight">Linux</span>
+        <span class="skill-tag highlight">Windows</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">Networking</span>
+        <span class="skill-tag">Server Management</span>
+        <span class="skill-tag">ServiceNow</span>
+        <span class="skill-tag">SCCM</span>
+        <span class="skill-tag">Monitoring Tools</span>
+        <span class="skill-tag">AI Agents</span>
+        <span class="skill-tag">Web App Architecture</span>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <h3><span>📊</span> Experience</h3>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
+            <span style="color:var(--navy); font-weight:500;">IT Operations</span>
+            <span style="color:var(--muted);">10 yrs</span>
+          </div>
+          <div style="background:var(--cream); border-radius:4px; height:6px;">
+            <div style="background:linear-gradient(to right, var(--navy), var(--gold)); width:95%; height:100%; border-radius:4px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
+            <span style="color:var(--navy); font-weight:500;">Team Leadership</span>
+            <span style="color:var(--muted);">6 yrs</span>
+          </div>
+          <div style="background:var(--cream); border-radius:4px; height:6px;">
+            <div style="background:linear-gradient(to right, var(--navy), var(--gold)); width:75%; height:100%; border-radius:4px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px;">
+            <span style="color:var(--navy); font-weight:500;">Cloud & Infrastructure</span>
+            <span style="color:var(--muted);">4 yrs</span>
+          </div>
+          <div style="background:var(--cream); border-radius:4px; height:6px;">
+            <div style="background:linear-gradient(to right, var(--navy), var(--gold)); width:60%; height:100%; border-radius:4px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<footer>
+  <p>Prabhu Ganeshan &nbsp;·&nbsp; IT Operations Professional &nbsp;·&nbsp; <a href="vgprabu17@gmail.com
